@@ -1,0 +1,37 @@
+﻿@model FindMe2.ViewModels.LoginModel
+@{
+    Layout = "_MasterAuth";
+}
+<div class="container">
+    <div class="container__inner">
+        <div class="container__form">
+            <form asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
+                @Html.ValidationSummary(false)
+                <label class="subtitle__name" for="name">
+                    Логин
+                    <input asp-for="Login" type="text" class="name__input" name="Login" />
+                </label>
+
+                <label class="subtitle__password" for="password">
+                    Пароль
+                    <input asp-for="Password" type="password" class="password__input" name="Password" />
+                    <a class="password__link" href="/Account/ChangePass">Забыли пароль?</a>
+                </label>
+                <button class="button" type="submit">Вход</button>
+            </form>
+            <div class="button__content">
+                <p class="button__text">Нет аккаунта?</p>
+                <span>
+                    <a class="button__link" href="/Account/Register">Зарегистрируйтесь</a>
+                </span>
+            </div>
+        </div>
+        <div class="container__text">
+            <h1 class="container__title">
+                Привет друг ..... входи и общайся в
+                <span class="name">FindMe</span>
+            </h1>
+        </div>
+    </div>
+</div>
+

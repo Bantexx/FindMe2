@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+
+:root{
+    --sans: 'Montserrat', sans-serif;
+    --serif: 'Roboto', sans-serif;
+    --srf: 16px;
+    --indigo: rgba(51, 0, 51, 1);
+    --rebeccapurple: rgba(105, 18, 117, 1);
+    --grey: rgba(173, 173, 173, 1);
+    --light-grey: rgba(242, 242, 242, 1);
+    --lime: rgba(153, 153, 0, 1);
+    --white: rgba(255, 255, 255, 1);
+    --greenyellow: rgba(204, 204, 102, 1);
+    --limegreen: rgba(102, 102, 0, 1);
+
+}
