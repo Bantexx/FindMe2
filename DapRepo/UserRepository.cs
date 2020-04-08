@@ -19,6 +19,7 @@ namespace FindMe2.DapRepo
         void CreateUser(RegisterModel model, (byte[] salt, string hash) hashvalues);
         void UpdateAvatar(string Path, string Login);
         User GetUserByEmail(string email);
+        Task ResetPass(string login, string pass);
     }
     public class UserRepository : IUserRepository
     {
@@ -26,6 +27,19 @@ namespace FindMe2.DapRepo
         public UserRepository(string connect)
         {
             connectionString = connect;
+        }
+        public async Task ResetPass(string login,string pass)
+        {
+            var new_pass = UserAuth.HashPass(pass);
+            byte[] salt = new_pass.Item1;
+            string hash = new_pass.Item2;
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                var sqlQuery = "UPDATE Users SET Salt =@salt WHERE Login =@login";
+                var sqlQuery1 = "INSERT INTO Hashes (Hash) VALUES(@hash)";
+                await db.ExecuteAsync(sqlQuery, new { salt, login });
+                await db.ExecuteAsync(sqlQuery1, new { hash });
+            }
         }
         public void UpdateAvatar(string Path, string Login)
         {

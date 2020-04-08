@@ -45,19 +45,41 @@ namespace FindMe2.Controllers
             if (ModelState.IsValid)
             {
                 var user = repo.GetUserByEmail(model.Email);
-                var token = "1234";
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = token }, protocol: HttpContext.Request.Scheme);
-                EmailService emailService = new EmailService();
-                await emailService.SendEmailAsync(model.Email, "Reset Password",
-                    $"Для сброса пароля пройдите по ссылке: <a href='{callbackUrl}'>link</a>");
+                if(user != null)
+                {
+                    //var token = UserAuth.GetRndToken();
+                    var token = "555";
+                    var callbackUrl = Url.Action("ResetPassword", "Account", new { email = user.Email, code = token }, protocol: HttpContext.Request.Scheme);
+                    EmailService emailService = new EmailService();
+                    await emailService.SendEmailAsync(model.Email, "Reset Password",
+                        $"Для сброса пароля пройдите по ссылке: <a href='{callbackUrl}'>Click Here!</a>");
+                }
             }
             return View("AboutMail");
         }
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult ResetPassword(string code = null)
+        public IActionResult ResetPassword(string email,string code = null)
         {
-            return code == null ? View("Error") : View();
+            ResetPassVM model = new ResetPassVM();
+            model.Email = email;
+            return code == null ? View("Error") : View(model);
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPassVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = repo.GetUserByEmail(model.Email);
+                if (user != null)
+                {
+                    await repo.ResetPass(user.Login, model.Password);
+                    return View("ResetPassConfirm");
+                }
+            }                
+            return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

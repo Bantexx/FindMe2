@@ -8,8 +8,6 @@ namespace FindMe2.Models
 {
     public class ResetPassVM
     {
-        [Required]
-        [EmailAddress]
         public string Email { get; set; }
 
         [Required]

@@ -36,5 +36,16 @@ namespace FindMe2.MainClasses
                 numBytesRequested: 256 / 8));
             return hashed;
         }
+        public static string GetRndToken()
+        {
+            string token;
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                byte[] bytes = new byte[12];
+                rng.GetBytes(bytes);
+                token = Convert.ToBase64String(bytes);
+            }
+            return token;
+        }
     }
 }
