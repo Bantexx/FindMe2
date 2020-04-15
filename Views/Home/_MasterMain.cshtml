@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/MainStyle.css" />
+    <title>FindMe</title>
+</head>
+
+<body>
+    <main class="site">
+        <header class="header">
+            <div class="header__inner-left">
+                <div class="header__logo">
+                    <a href="/Home/Main">
+                        <img src="~/img/лого.svg" alt="logo">
+                    </a>
+                </div>
+                <div class="header__search">
+                    <form action="" method="get">
+                        <input type="text" class="input__search" id="headerSearch" placeholder="Поиск в FindMe" />
+                        <button type="submit" class="btn__search"></button>
+                    </form>
+                </div>
+            </div>
+            <div class="header__inner-right">
+                <div class="header__location">
+                    <a class="location__link" href="#"><span>Москва</span></a>
+                </div>
+                <div class="header__notification">
+                    <a class="notification__link" href="#"> <span>Новость</span></a>
+                </div>
+            </div>
+        </header>
+        <section class="general">
+            <div class="general__inner">
+                <aside class="aside__left">
+                    <ul class="user__block">
+                        <li><a class="user__link" href="/Home/Profile">Профиль</a></li>
+                        <li><a class="user__link" href="#">Лента</a></li>
+                        <li><a class="user__link" href="#">Сообщение</a></li>
+                        <li><a class="user__link" href="#">Беседы</a></li>
+                        <li><a class="user__link" asp-action="Logout" asp-controller="Home">Выход</a></li>
+                    </ul>
+                </aside>
+                @RenderBody()
+            </div>
+        </section>
+    </main>
+    @await Html.PartialAsync("~/_ScriptsPartial.cshtml")
+</body>
+</html>

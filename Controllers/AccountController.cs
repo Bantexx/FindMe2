@@ -92,7 +92,7 @@ namespace FindMe2.Controllers
                 {
                     repo.CreateUser(model, UserAuth.HashPass(model.Password)); 
                     await Authenticate(model.Login);
-                    return RedirectToAction("Index", "Home");                                 
+                    return RedirectToAction("Main", "Home");                                 
                 }
                 else
                 {
@@ -111,7 +111,7 @@ namespace FindMe2.Controllers
                 if (active_user != null)
                 {
                     await Authenticate(logmodel.Login);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Main", "Home");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }

@@ -1,0 +1,35 @@
+﻿@model FindMe2.ViewModels.ProfileModel
+@{
+    Layout = "_MasterMain";
+}
+<section class="proff">
+
+    <div class="header__proff">
+        <h2 class="proff__title">Мой профиль</h2>
+        <a class="proff__link" href="/Home/EditProfile">Редактировать</a>
+    </div>
+
+    <div class="info__proff">
+        <div class="avatar__proff">
+            <img class="img__proff" src="@Model.current_user.Picture" alt="avatar">
+            <p class="link__proff">Изменить аватар</p>
+            <div class="hide_block">
+                <form asp-action="ChangeAva" asp-controller="Home" method="Post" enctype="multipart/form-data">
+                    <input type="file" name="uploadedFile" /><br>
+                    <input type="submit" value="Загрузить" />
+                </form>
+            </div>
+            <div class="tags__proff">
+                <h4 class="tags__title">Мои теги:</h4>
+                @foreach (var tag in Model.tags)
+                {
+                    <a class="tag__link" href="#">#@tag.Title</a>
+                }
+            </div>
+        </div>
+        <div>
+            <p>Login:@Model.current_user.Login</p>
+            <p>Email:@Model.current_user.Email</p>
+        </div>
+    </div>
+</section>

@@ -11,7 +11,6 @@ namespace FindMe2.Models
         public string Login { get; set; }
         public byte[] Salt { get; set; }
         public string Email { get; set; }
-        public string Tags { get; set; }
         public string Picture { get; set; }
     }
 }

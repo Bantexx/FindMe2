@@ -20,6 +20,8 @@ namespace FindMe2.DapRepo
         void UpdateAvatar(string Path, string Login);
         User GetUserByEmail(string email);
         Task ResetPass(string login, string pass);
+        List<Tag> GetUserTags(int id);
+        void UpdateInfoUser(EditProfileVM profile, int id);
     }
     public class UserRepository : IUserRepository
     {
@@ -92,6 +94,21 @@ namespace FindMe2.DapRepo
                 var sqlQuery1 = "INSERT INTO Hashes (Hash) VALUES(@hash)";
                 db.Execute(sqlQuery, new { model.Login, model.Email, hashvalues.salt });
                 db.Execute(sqlQuery1, new { hashvalues.hash });
+            }
+        }
+        public List<Tag> GetUserTags(int id)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                return db.Query<Tag>("SELECT * FROM Tags INNER JOIN Profile_tags ON Id_Tag=Id WHERE Id_User = @id", new { id }).ToList();
+            }
+        }
+        public void UpdateInfoUser(EditProfileVM profile,int id)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                var sqlQuery = "UPDATE Users SET Login =@Login,Email=@Email WHERE Id=@id";
+                db.Execute(sqlQuery, new { profile.Login, profile.Email, id });
             }
         }
     }

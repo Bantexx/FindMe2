@@ -1,0 +1,97 @@
+.cards {
+    max-width: 1300px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    margin-top: 60px;
+    
+  
+}
+.card {
+    width: 250px;
+    margin: 10px 10px;
+    background-color: #fff;
+    border-radius: 10px
+    
+}
+.card__header {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    
+}
+
+
+.avatar__card {
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+.avatar__card-ekaterina {
+    background-image: url(/images/cards/Ekaterina\ 2x.jpg);
+
+}
+.avatar__card-vasya {
+    background-image: url(/images/cards/Vasya\ 2x.jpg);
+}
+.avatar__card-elena {
+    background-image: url(/images/cards/Elena\ 2x.jpg);
+
+}
+.avatar__card-boris {
+    background-image: url(/images/cards/Boris\ 2x.jpg);
+}
+.card__name {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+}
+.name {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    
+    color: var(--indigo);
+}
+.data {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.5;
+    
+    color: var(--grey);
+}
+
+.card__footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 7px 0;
+}
+
+.icon__favorites {
+   content: url(/images/cards/star.svg);
+    
+}
+
+.icon__message {
+    content: url(/images/cards/message.svg);
+    
+}
+.text__subscribers {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+
+    color: var(--grey);
+}
