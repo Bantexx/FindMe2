@@ -7,3 +7,7 @@
         }   
     });
 });
+$(".icon__favorites").click(function () {
+    $(this).css('content', 'url(/img/cards/yellow_star.png)');
+});
+

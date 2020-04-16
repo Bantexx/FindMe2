@@ -22,6 +22,10 @@ namespace FindMe2.DapRepo
         Task ResetPass(string login, string pass);
         List<Tag> GetUserTags(int id);
         void UpdateInfoUser(EditProfileVM profile, int id);
+        User GetUserById(string id);
+        List<Tag> GetPopularTags(int count_tags);
+        List<AuthorNewsVM> GetNewsByUserTags(int id);
+        List<AuthorNewsVM> GetPopularNews(int count_tag);
     }
     public class UserRepository : IUserRepository
     {
@@ -29,6 +33,14 @@ namespace FindMe2.DapRepo
         public UserRepository(string connect)
         {
             connectionString = connect;
+        }
+        public User GetUserById(string id)
+        {
+            var id_number = Convert.ToInt32(id);
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                return db.QueryFirstOrDefault<User>("SELECT * FROM Users WHERE Id =@id_number", new { id_number });
+            }
         }
         public async Task ResetPass(string login,string pass)
         {
@@ -109,6 +121,36 @@ namespace FindMe2.DapRepo
             {
                 var sqlQuery = "UPDATE Users SET Login =@Login,Email=@Email WHERE Id=@id";
                 db.Execute(sqlQuery, new { profile.Login, profile.Email, id });
+            }
+        }
+        public List<Tag> GetPopularTags(int count_tags)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                var sqlQuery = "SELECT * FROM Tags WHERE Id IN ( SELECT TOP (@count_tags) Id_Tag FROM News_tags GROUP BY Id_Tag ORDER BY COUNT(Id_Tag) DESC)";
+                return db.Query<Tag>(sqlQuery, new { count_tags }).ToList();
+            }
+        }
+        public List<AuthorNewsVM> GetNewsByUserTags(int id)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                var sqlQuery = "SELECT DISTINCT n.Id_News as idNews,n.Id_Author as IdAuthor,n.Text,n.Date as DateNews,n.Interested,n.Picture,us.Login as LoginAuthor,us.Picture as Avatar " +
+                                " FROM News n" + 
+                                " JOIN Users us ON n.Id_Author=us.Id" +
+                                " JOIN Profile_tags p_t ON p_t.Id_User = @id" +
+                                " JOIN News_tags n_t ON n.Id_News = n_t.Id_News AND n_t.Id_tag = p_t.Id_tag";
+                return db.Query<AuthorNewsVM>(sqlQuery, new { id }).ToList();
+            }
+        }
+        public List<AuthorNewsVM> GetPopularNews(int count_tag)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                var sqlQuery = "SELECT n.Id_News as idNews,n.Id_Author as IdAuthor,n.Text,n.Date as DateNews,n.Interested,n.Picture,us.Login as LoginAuthor,us.Picture as Avatar" +
+                    " FROM News n JOIN Users us ON n.Id_Author=us.Id WHERE EXISTS(SELECT NULL FROM News_tags" +
+                    " WHERE Id_Tag IN (SELECT TOP(@count_tag) Id_Tag FROM News_tags GROUP BY Id_Tag ORDER BY COUNT(Id_Tag) DESC))";
+                return db.Query<AuthorNewsVM>(sqlQuery, new { count_tag }).ToList();
             }
         }
     }

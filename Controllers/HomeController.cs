@@ -29,20 +29,43 @@ namespace FindMe2.Controllers
             _appEnvironment = appEnvironment;
             repo = rep;
         }
-        public IActionResult Main()
+        [HttpGet]
+        public IActionResult Main(string content = null)
         {
-            return View();
+            MainNewsVM main_news = new MainNewsVM();
+            if (content == "popular")
+            {
+                List<Tag> pop_tags = repo.GetPopularTags(5);
+
+                main_news.user_tags = repo.GetUserTags(Convert.ToInt32(User.Identity.Name)).Select(x => x.Title).ToList();
+                main_news.popular_tags = pop_tags.Select(x => x.Title).ToList();
+                main_news.author_news = repo.GetPopularNews(4);
+                main_news.content = content;
+
+                return View(main_news);
+            }
+            else
+            {               
+                List<Tag> user_tags = repo.GetUserTags(Convert.ToInt32(User.Identity.Name));
+
+                main_news.user_tags = user_tags.Select(x => x.Title).ToList();
+                main_news.popular_tags = repo.GetPopularTags(5).Select(x => x.Title).ToList();
+                main_news.author_news = repo.GetNewsByUserTags(Convert.ToInt32(User.Identity.Name));
+                main_news.content = content;
+
+                return View(main_news);
+            }
         }
         public IActionResult Profile()
         {
-            current_user = repo.GetUserByLogin(User.Identity.Name);
+            current_user = repo.GetUserById(User.Identity.Name);
             ProfileModel user_profile = new ProfileModel(current_user, repo.GetUserTags(current_user.Id));
             return View(user_profile);
         }
         [HttpGet]
         public IActionResult EditProfile()
         {
-            current_user = repo.GetUserByLogin(User.Identity.Name);
+            current_user = repo.GetUserById(User.Identity.Name);
             EditProfileVM edit_user = new EditProfileVM();
             edit_user.Login = current_user.Login;
             edit_user.Email = current_user.Email;
@@ -53,17 +76,10 @@ namespace FindMe2.Controllers
         [HttpPost]
         public IActionResult EditProfile(EditProfileVM editprof)
         {
-            current_user = repo.GetUserByLogin(User.Identity.Name);
+            current_user = repo.GetUserById(User.Identity.Name);
             if (ModelState.IsValid)
             {
                 repo.UpdateInfoUser(editprof, current_user.Id);
-                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, editprof.Login)
-                };
-                ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
                 return RedirectToAction("Profile");              
             }
             else

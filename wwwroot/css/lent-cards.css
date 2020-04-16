@@ -79,12 +79,12 @@
 }
 
 .icon__favorites {
-   content: url(/images/cards/star.svg);
+   content: url(/img/cards/star.svg);
     
 }
 
 .icon__message {
-    content: url(/images/cards/message.svg);
+    content: url(/img/cards/message.svg);
     
 }
 .text__subscribers {

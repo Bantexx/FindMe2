@@ -91,7 +91,7 @@ namespace FindMe2.Controllers
                 if (user == null)
                 {
                     repo.CreateUser(model, UserAuth.HashPass(model.Password)); 
-                    await Authenticate(model.Login);
+                    await Authenticate(user.Id.ToString());
                     return RedirectToAction("Main", "Home");                                 
                 }
                 else
@@ -110,18 +110,18 @@ namespace FindMe2.Controllers
                 User active_user = repo.GetUser(logmodel);
                 if (active_user != null)
                 {
-                    await Authenticate(logmodel.Login);
+                    await Authenticate(active_user.Id.ToString());
                     return RedirectToAction("Main", "Home");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
             return View(logmodel);
         }
-        private async Task Authenticate(string userName)
+        private async Task Authenticate(string idUser)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, idUser)
             };
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
