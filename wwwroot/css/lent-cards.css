@@ -6,8 +6,6 @@
     align-items: flex-start;
     justify-content: space-evenly;
     margin-top: 60px;
-    
-  
 }
 .card {
     width: 250px;
@@ -22,8 +20,6 @@
     padding: 10px;
     
 }
-
-
 .avatar__card {
     width: 60px;
     height: 60px;
@@ -31,20 +27,6 @@
     background-size: cover;
     background-position: center;
     border-radius: 10px;
-}
-.avatar__card-ekaterina {
-    background-image: url(/images/cards/Ekaterina\ 2x.jpg);
-
-}
-.avatar__card-vasya {
-    background-image: url(/images/cards/Vasya\ 2x.jpg);
-}
-.avatar__card-elena {
-    background-image: url(/images/cards/Elena\ 2x.jpg);
-
-}
-.avatar__card-boris {
-    background-image: url(/images/cards/Boris\ 2x.jpg);
 }
 .card__name {
     display: flex;
@@ -56,8 +38,7 @@
     font-family: var(--serif);
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
-    
+    font-size: 15px; 
     color: var(--indigo);
 }
 .data {
@@ -66,7 +47,6 @@
     font-weight: 400;
     font-size: 13px;
     line-height: 1.5;
-    
     color: var(--grey);
 }
 
@@ -79,12 +59,23 @@
 }
 
 .icon__favorites {
-   content: url(/img/cards/star.svg);
+    width: 23px;
+    height: 23px;
+    background-image: url(/img/cards/star.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    cursor: pointer;
     
+}
+.icon__favorites:hover{
+    background-image: url(/img/cards/star\ hover.svg);
+    transition: all .3s linear;
 }
 
 .icon__message {
     content: url(/img/cards/message.svg);
+    cursor: pointer;
     
 }
 .text__subscribers {
@@ -94,4 +85,7 @@
     font-size: 18px;
 
     color: var(--grey);
+}
+.card__content img {
+    width:250px;
 }

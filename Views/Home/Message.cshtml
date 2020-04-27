@@ -1,0 +1,116 @@
+﻿@model FindMe2.ViewModels.ChatsVM
+@{
+    Layout = "_MasterMain";
+}
+<div class="users">
+    <div class="search users__search">
+        <form id="usersSearch" action="/Home/Message" method="GET">
+            <input type="text" id="SearchUserChat" class="input users__input" name="su" placeholder="Поиск в сообщениях">
+            <button type="submit" class="btn btn__users"></button>
+        </form>
+    </div>
+
+    <span class="users__add">
+        <a href="#">Личные сообщения</a>
+    </span>
+
+    <div class="users__group area">
+        <ul class="users__list">
+            @foreach (var item in Model.chats)
+            {
+                <li class="users__name">
+                    <img class="users__img" src="@item.Avatar" alt="">
+                    <a href="/Home/Message?idchat=@item.ChatId" class="users__link">@item.Login</a>
+                    <span class="users__loco">@item.GeoLocation</span>
+                </li>
+            }
+        </ul>
+    </div>
+
+</div>
+<div class="messenger">
+    @if (Model.idChat == null)
+    {
+        <p>выбери диалог или создайте новый</p>
+    }
+    else
+    {
+        <div class="messenger__header" id="@Model.currentChat.ChatId">
+            <div class="messenger__avatar">
+                <img class="messenger__link" src="@Model.currentChat.Avatar" alt="">
+                <span class="messenger__name" id="@Model.currentChat.IdUser">@Model.currentChat.Login</span>
+            </div>
+            <div class="messenger__item">
+                <span class="messenger__hookup"></span>
+                <span class="messenger__add"></span>
+                <div class="search messenger__search">
+                    <form action="">
+                        <input type="text" class="input messenger__input" id="messengerSearch" placeholder="Поиск">
+                        <button type="submit" class="btn btn__messenger"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="messenger__chat">
+            @foreach (var item in Model.messageVm.messages.Select(x=>x).OrderBy(x=>x.date_create))
+            {
+                <!--<div class="chat__data">@item.date_create</div>-->
+                @if (item.Id_sender == Model.messageVm.myprofile.Id)
+                {
+                    <div class="chat__user">
+                        <div class="chat__avatar">
+                            <img class="chat__img" src="@Model.messageVm.myprofile.Picture" alt="">
+                            <a class="chat__link" href="#">
+                                <span class="chat__time">@item.date_create</span>
+                                <span class="chat__name">@Model.messageVm.myprofile.Login</span>
+                                <span class="chat__loco">Париж</span>
+                            </a>
+                        </div>
+                        <div class="chat__messenger">
+                            <span class="chat__icon"></span>
+                            <p class="chat__text">
+                                @item.Text
+                                @foreach(var atach in Model.messageVm.chat_attachments.Where(x=>x.Id_Chat==item.Id_chat&&x.Id_Mess==item.Id_mess).ToList())
+                                {
+                                    <img src="@atach.Attach" />
+                                }
+                            </p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="chat__user">
+                        <div class="chat__avatar">
+                            <img class="chat__img" src="@Model.currentChat.Avatar" alt="">
+                            <a class="chat__link" href="#">
+                                <span class="chat__time">@item.date_create</span>
+                                <span class="chat__name">@Model.currentChat.Login</span>
+                                <span class="chat__loco">Берлин</span>
+                            </a>
+                        </div>
+                        <div class="chat__messenger">
+                            <span class="chat__icon"></span>
+                            <p class="chat__text">
+                                @item.Text
+                            </p>
+                        </div>
+
+                    </div>
+                }
+            }
+        </div>
+            
+        <div class="messenger__footer">
+            <div class="footer__chatline">
+                <form class="footer__form" id="send_mess">
+                    <span class="icon__fadd"></span>
+                    <input type="text" class="footer__chat" id="messengerChat" placeholder="Написать сообщение">
+                    <button type="submit" class="btn__chat"></button>
+                    <span class="icon__microphone"></span>
+                </form>
+            </div>
+        </div>
+    }
+</div>
+

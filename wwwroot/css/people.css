@@ -1,0 +1,130 @@
+.people {
+    max-width: 1300px;
+    width: 100%;
+    margin-top: 60px;
+    
+}
+.people__cards { 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+   
+    
+}
+.people__card {
+    width: 250px;
+    height: 460px;
+    border-radius: 25px;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    padding: 15px 20px;
+    margin: 10px;
+    position: relative;
+}
+.people__header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.people__title {
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+
+    color: var(--indigo);
+}
+.people__loco {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+
+    color: var(--grey);
+}
+.people__icon {
+    content: url(/images/cards/star.svg);
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+.people__icon:hover{
+    content: url(/images/cards/star\ hover.svg);
+    transition: all .3s linear;
+  
+}
+
+.people__figure {
+    margin-bottom: 20px;
+    
+}
+.people__image {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.people__tags {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #330033; 
+   
+}
+
+.people__list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 5px;
+    
+
+}
+.people__item {
+    margin-right: 15px;
+
+  
+}
+.people__link-tag {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+
+    color: var(--grey);
+}
+.people__link-tag:hover{
+  color: var(--indigo);
+  transition: all 0.3s ease;
+}
+
+.people__footer {
+    margin-top: 30px;
+    text-align: center;
+}
+.people__button {
+    display: inline-block;
+    border: none;
+    padding: 10px 65px;
+    border: 2px solid var(--greenyellow);
+    border-radius: 15px;
+    background-color: var(--greenyellow);
+    cursor: pointer;
+}
+.people__button:hover{
+    background-color: var(--lime);
+    transition: all 0.3s ease;
+}
+.people__text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+
+    color: var(--indigo);
+}

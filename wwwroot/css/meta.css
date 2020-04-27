@@ -1,6 +1,6 @@
-* {
+*{
     margin: 0;
-    padding: 0;
+    padding:0;
     box-sizing: border-box;
     list-style: none;
     text-decoration: none;
@@ -8,9 +8,15 @@
 
 
 :root{
+
+    /* fonts */
+    
     --sans: 'Montserrat', sans-serif;
     --serif: 'Roboto', sans-serif;
     --srf: 16px;
+
+    /* color */
+
     --indigo: rgba(51, 0, 51, 1);
     --rebeccapurple: rgba(105, 18, 117, 1);
     --grey: rgba(173, 173, 173, 1);
@@ -19,5 +25,33 @@
     --white: rgba(255, 255, 255, 1);
     --greenyellow: rgba(204, 204, 102, 1);
     --limegreen: rgba(102, 102, 0, 1);
+
+    /* icon */
+
+    --star: url(/img/icon/star.svg);
+    --star-room-card: url(/img/icon/star-room-card.svg);
+    --bell: url(/img/icon/bell.svg);
+    --map-pin: url(/img/icon/map-pin.svg);
+    --user-plus: url(/img/icon/user-plus.svg);
+    --user-plus-hover: url(/img/icon/user-plus-hover.svg);
+    --x-circle: url(/img/icon/x-circle.svg);
+    --x-circle-hover: url(/img/icon/x-circle-hover.svg);
+    --smile: url(/img/icon/smile.svg);
+    --smile-hover: url(/img/icon/smile-hover.svg);
+    --search: url(/img/icon/search.svg);
+    --pushpin: url(/img/icon/pushpin.svg);
+    --pushpin-hover: url(/img/icon/pushpin-hover.svg);
+    --plus-circle: url(/img/icon/plus-circle.svg);
+    --plus-circle-indigo: url(/img/icon/plus-circle-indigo.svg);
+    --more: url(/img/icon/more-horizontal.svg);
+    --more-hover: url(/img/icon/more-horizontal-hover.svg);
+    --mic: url(/img/icon/mic.svg);
+    --mic-hover: url(/img/icon/mic-hover.svg);
+    --message: url(/img/icon/message-square.svg);
+    --map-pin: url(/img/icon/map-pin.svg);
+    --arr-right: url(/img/icon/chevrons-right.svg);
+    --arr-right-hover: url(/img/icon/chevrons-right-hover.svg);
+    --check: url(/img/icon/check-square.svg);
+    
 
 }

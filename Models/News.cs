@@ -13,5 +13,6 @@ namespace FindMe2.Models
         public DateTime Date { get; set; }
         public int Interested { get; set; }
         public string Picture { get; set; }
+        public string Title { get; set; }
     }
 }

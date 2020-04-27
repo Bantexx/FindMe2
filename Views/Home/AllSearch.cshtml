@@ -1,0 +1,153 @@
+﻿@model FindMe2.ViewModels.SearchAllVM
+@{
+    Layout = "_MasterMain";
+}
+<article class="content">
+    <div class="content__inner">
+
+        <div class="tags">
+            <ul class="tags__list">
+                <li>
+                    <a class="users__link" href="#"><span data-content="Мои теги">Мои теги</span></a>
+                    <!-- <ul class="user__tags">
+                      <li><a class="user__link user__link-sub" href="#">#люди</a></li>
+                      <li><a class="user__link user__link-sub" href="#">#мир</a></li>
+                      <li><a class="user__link user__link-sub" href="#">#техника</a></li>
+                    </ul> -->
+                </li>
+                <li>
+                    <a class="users__link" href="#"><span data-content="Популярные теги">Популярные теги</span></a>
+                    <!-- <ul class="popular__tags">
+                      <li><a class="user__link pop__link-sub"  href="#">#люди</a></li>
+                      <li><a class="user__link pop__link-sub"
+                       href="#">#страны</a></li>
+                      <li><a class="user__link pop__link-sub" href="#">#программирование</a></li>
+                      <li><a class="user__link pop__link-sub" href="#">#мир</a></li>
+                      <li><a class="user__link pop__link-sub" href="#">#спорт</a></li>
+                      <li><a class="user__link pop__link-sub" href="#">#природа</a></li>
+                      <li><a class="user__link pop__link-sub" href="#">#техника</a></li>
+                    </ul> -->
+                </li>
+                <li>
+                    <a class="users__link" href="#"><span data-content="По локации">По локации</span></a>
+                </li>
+            </ul>
+        </div>
+
+        <section class="card__new">
+            @if (Model.news.Count > 0)
+            {
+                <div class="card__new-header">
+                    <h4 class="card__new-title">Новости</h4>
+                    <a href="/Home/Search?str=@ViewBag.stringsrch&option=News" class="card__new-transition">показать всё</a>
+                </div>
+                <div class="card__new-blocks">
+
+                    @for (int i = 0; i < 4 && i < @Model.news.Count; i++)
+                    {
+                        <div class="card__new-block" style="background-image:url(@Model.news[i].Picture)">
+                            <div class="card__new-description">
+                                <span class="card__new-time">@Model.news[i].DateNews</span>
+                                <h5 class="card__new-name">@Model.news[i].Title</h5>
+                                <span class="card__new-views">3,6к просмотров</span>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            }
+            @if (Model.users.Count > 0)
+            {
+                <div class="card__new-header">
+                    <h4 class="card__new-title">Люди</h4>
+                    <a href="/Home/Search?str=@ViewBag.stringsrch&option=Users" class="card__new-transition">показать всё</a>
+                </div>
+                <div class="card__people-blocks">
+                    @for (int i=0;i<8 && i < Model.users.Count;i++)
+                    {
+                        <div class="card__people-block">
+                            <picture>
+                                <img src="@Model.users[i].Picture" alt="">
+                            </picture>
+                            <div class="card__people-description">
+                                <span class="card__people-name">@Model.users[i].Login</span>
+                                <span class="card__people-subscribers">83.6к</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+             }                  
+
+            <div class="card__new-header">
+                <h4 class="card__new-title">Комнаты</h4>
+                <a href="#" class="card__new-transition">показать всё</a>
+            </div>
+
+            <div class="card__room-blocks">
+
+                <div class="card__room-block">
+
+                    <picture>
+                        <img src="/img/room-card/природа.jpg" alt="">
+                    </picture>
+
+                    <div class="card__room-description">
+                        <span class="card__room-name">Алекс</span>
+                        <h5 class="card__room-title">Природа</h5>
+                        <span class="card__room-subscribers">83.5к</span>
+                    </div>
+
+                </div>
+                <div class="card__room-block">
+
+                    <picture>
+                        <img src="/img/room-card/техно.jpg" alt="">
+                    </picture>
+
+                    <div class="card__room-description">
+                        <span class="card__room-name">Борис</span>
+                        <h5 class="card__room-title">Технологии</h5>
+                        <span class="card__room-subscribers">53.5к</span>
+                    </div>
+
+                </div>
+                <div class="card__room-block">
+
+                    <picture>
+                        <img src="/img/room-card/космос.jpg" alt="">
+                    </picture>
+
+                    <div class="card__room-description">
+                        <span class="card__room-name">Катя</span>
+                        <h5 class="card__room-title">Космос</h5>
+                        <span class="card__room-subscribers">23.5к</span>
+                    </div>
+
+                </div>
+                <div class="card__room-block">
+
+                    <picture>
+                        <img src="/img/room-card/интерьер.jpg" alt="">
+                    </picture>
+
+                    <div class="card__room-description">
+                        <span class="card__room-name">Иван</span>
+                        <h5 class="card__room-title">Интерьерihiuhio;hj</h5>
+                        <span class="card__room-subscribers">43.8к</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </div>
+</article>
+
+<aside class="aside__right">
+    <ul class="people__block">
+        <li><a class="people__link" style="text-decoration:underline" href="/Home/Search?str=@ViewBag.stringsrch">Все</a></li>
+        <li><a class="people__link" href="/Home/Search?str=@ViewBag.stringsrch&option=News">Новости</a></li>
+        <li><a class="people__link" href="/Home/Search?str=@ViewBag.stringsrch&option=Users">Люди</a></li>
+        <li><a class="people__link" href="/Home/Search?str=@ViewBag.stringsrch&option=Rooms">Комнаты</a></li>
+    </ul>
+</aside>

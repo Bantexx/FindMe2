@@ -1,0 +1,135 @@
+.card__new {
+    max-width: 1300px;
+    width: 100%;
+    height: 100%;
+    margin-top: 80px;
+}
+.card__new-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+.card__new-title {
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+
+    color: var(--light-grey);
+}
+.card__new-transition {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    
+    color: var(--rebeccapurple);
+}
+.card__new-transition::after{
+    content: '';
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 5px;
+    background-image: var(--arr-right);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    
+}
+.card__new-transition:hover::after{
+    background-image: var(--arr-right-hover);
+    transition: all .3s linear;
+
+}
+.card__new-transition:hover{
+    color: var(--lime);
+    transition: all .3s linear;
+}
+
+.card__new-blocks{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    
+
+}
+.card__new-block {
+    width: 285px;
+    height: 130px;
+    border-radius: 15px;
+    position: relative;
+    margin-right: 20px;
+      
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+   
+}
+.mountains{
+    background-image: url(/img/new-card/горы.jpg);
+}
+.interior {
+    background-image: url(/img/new-card/интерьер.jpg);
+}
+.bread {
+    background-image: url(/img/new-card/хлеб.jpg);
+}
+.card__new-block::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 15px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card__new-description {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+   align-items: flex-start;
+    top: 5px;
+    left: 20px;
+    padding-bottom: 10px;
+ 
+   
+}
+.card__new-time,
+.card__new-views{
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;  
+   
+    color: var(--grey);
+}
+.card__new-time{
+    font-size: 13px;
+}
+.card__new-views{
+    font-size: 14px;
+
+}
+
+.card__new-name {
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;;
+
+    color: var(--light-grey);
+}

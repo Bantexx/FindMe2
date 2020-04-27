@@ -90,7 +90,8 @@ namespace FindMe2.Controllers
                 User user = repo.GetUserByLogin(model.Login);
                 if (user == null)
                 {
-                    repo.CreateUser(model, UserAuth.HashPass(model.Password)); 
+                    repo.CreateUser(model, UserAuth.HashPass(model.Password));
+                    user = repo.GetUserByLogin(model.Login);
                     await Authenticate(user.Id.ToString());
                     return RedirectToAction("Main", "Home");                                 
                 }
@@ -121,7 +122,8 @@ namespace FindMe2.Controllers
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, idUser)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, idUser),
+                new Claim(ClaimTypes.NameIdentifier, idUser)
             };
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));

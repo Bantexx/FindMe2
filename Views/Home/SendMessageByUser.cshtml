@@ -1,0 +1,17 @@
+﻿@model FindMe2.Models.User
+<div class="chat__user">
+    <div class="chat__avatar">
+        <img class="chat__img" src="@Model.Picture" alt="">
+        <a class="chat__link" href="#">
+            <span class="chat__time">@ViewBag.Time</span>
+            <span class="chat__name">@Model.Login</span>
+            <span class="chat__loco">Париж</span>
+        </a>
+    </div>
+    <div class="chat__messenger">
+        <span class="chat__icon"></span>
+        <p class="chat__text">
+            @ViewBag.Text
+        </p>
+    </div>
+</div>

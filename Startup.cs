@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FindMe2.DapRepo;
+using FindMe2.MainClasses;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +33,7 @@ namespace FindMe2
                 {
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
+            services.AddHttpContextAccessor();
             services.AddMvc();
             services.AddSignalR();
         }
@@ -62,6 +64,7 @@ namespace FindMe2
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Main}/{id?}");
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }

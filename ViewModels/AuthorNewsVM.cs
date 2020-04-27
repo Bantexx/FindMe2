@@ -16,6 +16,6 @@ namespace FindMe2.ViewModels
         public string Picture { get; set; }
         public string LoginAuthor { get; set; }
         public string Avatar { get; set; }
-
+        public string Title { get; set; }
     }
 }
