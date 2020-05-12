@@ -1,0 +1,113 @@
+.showAva{
+    display:none;
+}
+.block_Avatar{
+    width:200px;
+    height:200px;
+}
+.active-popup__content form button {
+    position: absolute;
+    top: 60%;
+    right: 42%;
+    visibility: hidden;
+}
+
+.active-popup {
+    max-width: 800px;
+    width: 100%;
+    border: 1px solid var(--grey);
+    border-radius: 20px;
+    margin: 0 auto;
+    background-color: var(--white);
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    display: none;
+}
+.active-popup__inner {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    
+}
+.active-popup__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 10px;
+    margin-bottom: 20px;
+    background: var(--light-grey);
+    border-bottom: 1px solid var(--grey);
+    border-radius: 20px 20px 0 0;
+}
+.active-popup__title,
+.active-popup__description,
+.active-popup__footer {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    
+
+    color: var(--indigo);
+}
+.active-popup__title{
+    font-size: 24px;
+    line-height: 28px;
+}
+.active-popup__close {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: var(--x-circle);
+    transition: all .4s linear;
+    cursor: pointer;
+}
+.active-popup__close:hover {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: var(--x-circle-hover);
+    transition: all .4s linear;
+}
+.active-popup__content {
+    width: 100%;
+    padding: 50px;
+    position: relative;
+}
+.active-popup__description {
+    font-size: 18px;
+    line-height: 1.3;
+    margin-bottom: 30px;
+}
+.active-popup__btn {
+    border: none;
+    background-color: transparent;
+    padding: 8px 26px;
+    border: 2px solid var(--lime);
+    box-sizing: border-box;
+    border-radius: 20px;
+
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all .4s linear;
+    color: var(--lime);
+
+}
+.active-popup__btn:hover{
+    transition: all .4s linear;
+    background-color: var(--greenyellow);
+    color: var(--indigo);
+}
+.active-popup__footer {
+    width: 100%;
+    font-size: 14px;
+    line-height: 19px;
+    padding: 10px 0;
+    border-top: 1px solid var(--grey);
+    border-radius: 0 0 20px 20px;
+    background-color: var(--light-grey);
+
+}

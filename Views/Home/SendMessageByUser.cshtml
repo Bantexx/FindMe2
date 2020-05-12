@@ -1,17 +1,25 @@
-﻿@model FindMe2.Models.User
-<div class="chat__user">
+﻿@model FindMe2.ViewModels.MessageVM
+<div class="chat__user" data-id="@Model.messages[0].Id_chat">
     <div class="chat__avatar">
-        <img class="chat__img" src="@Model.Picture" alt="">
+        <img class="chat__img" src="@Model.myprofile.Picture" alt="">
         <a class="chat__link" href="#">
-            <span class="chat__time">@ViewBag.Time</span>
-            <span class="chat__name">@Model.Login</span>
+            <span class="chat__time">@Model.messages[0].date_create</span>
+            <span class="chat__name">@Model.myprofile.Login</span>
             <span class="chat__loco">Париж</span>
         </a>
     </div>
     <div class="chat__messenger">
         <span class="chat__icon"></span>
-        <p class="chat__text">
-            @ViewBag.Text
-        </p>
+        <div class="chat__content">
+            <p class="chat__text">
+                @Model.messages[0].Text
+            </p>
+            <picture class="chat__images">
+                @foreach (var atach in Model.chat_attachments)
+                {
+                    <img src="@atach.Attach" alt=""/>
+                }
+            </picture>
+        </div>
     </div>
 </div>

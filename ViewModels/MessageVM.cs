@@ -11,6 +11,6 @@ namespace FindMe2.ViewModels
         public List<Attachment> chat_attachments { get; set; }
         public List<Message> messages { get; set; }
         public User myprofile { get; set; }
-
+        public List<int> FavMessages { get; set; }
     }
 }

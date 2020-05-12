@@ -1,0 +1,219 @@
+.news-popup {
+    max-width: 800px;
+    top: 20%;
+    left: 30%;
+    background-color: var(--light-grey);
+    border: 2px solid var(--rebeccapurple);
+    border-radius: 25px;
+    position: absolute;
+    display: none;
+    
+    
+}
+.news-popup__inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    position: relative;
+   
+}
+.news-popup__header {
+    display: flex;
+    flex-direction: row;
+   
+}
+.news-popup__avatar {
+    width: 59px;
+    height: 59px;
+}
+.news-popup__form-group {
+    display: flex;
+    flex-direction: column;
+   
+}
+.news-popup__form {
+    margin: 25px  40px 0;
+    
+       
+}
+.news-popup__input,
+.news-popup__textarea {
+    display: block;
+    width: 600px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--rebeccapurple);
+    color: (--light-grey);
+    background-color: var(--light-grey);
+   
+}
+.news-popup__input {
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    
+ 
+}
+
+.news-popup__textarea{
+    height: 250px;
+    padding: 30px 0;
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 15px;
+
+}
+.news-popup__button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 20px;
+    border: none;
+    border: 2px solid var(--greenyellow);
+    border-radius: 15px;  
+    cursor: pointer;
+    background: var(--greenyellow);
+
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--indigo);
+
+}
+.news-popup__button:hover{
+    background-color: var(--lime);
+    transition: all 0.3s ease;
+}
+.news-popup__add-tags{
+    width: 100%;
+    margin-left: 30px;
+    margin-bottom: 30px;
+   
+
+}
+.news-popup__add-icon {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color:var(--grey);
+    
+}
+.news-popup__add-icon::before{
+    margin-right: 5px;
+    background-image: var(--plus-circle);
+}
+.news-popup__add-icon::before,
+.news-popup__add-icon:hover::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    background-image: var(--plus-circle);
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+}
+.news-popup__add-icon:hover{
+    color: var(--indigo);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+}
+
+.news-popup__add-icon:hover::before{  
+    background-image: var(--plus-circle-indigo);
+}
+
+.news-popup__close {
+    width: 24px;
+    height: 24px;
+    background-image: var(--x-circle);
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+.news-popup__close:hover {
+    width: 24px;
+    height: 24px;
+    background-image: var(--x-circle-hover);
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+
+}
+.news-popup__footer {
+    display: flex;
+  
+}
+
+.news-popup__camera,
+.news-popup__smile,
+.news-popup__music,
+.news-popup__play-circle,
+.news-popup__image{
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+.news-popup__camera {
+background-image: var(--camera);
+
+
+}
+.news-popup__camera:hover {
+background-image: var(--camera-hover);
+
+}
+.news-popup__smile {
+    background-image: var(--smile);
+    
+
+}
+.news-popup__smile:hover {
+    background-image: var(--smile-hover);
+
+}
+.news-popup__music {
+    background-image: var(--music);
+    
+}
+.news-popup__music:hover {
+    background-image: var(--music-hover);
+    
+}
+.news-popup__play-circle {
+    background-image: var(--play-circle);
+  
+}
+.news-popup__play-circle:hover {
+    background-image: var(--play-circle-hover);
+  
+}
+.news-popup__image {
+    background-image: var(--image);
+
+}
+.news-popup__image:hover {
+    background-image: var(--image-hover);
+
+}

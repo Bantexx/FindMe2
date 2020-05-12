@@ -1,14 +1,21 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap');
-@import 'general.css';
-@import 'lent-cards.css';
-@import 'meta.css';
 @import 'normalize.css';
+@import 'meta.css';
+@import 'general.css';
+/*@import 'lent-cards.css';*/
 @import 'myprof.css';
- @import 'messeng.css';
+@import 'messeng.css';
 @import 'room-cards.css';
-@import 'Errors.css';
+@import 'people.css';
 @import 'myprof-popup.css';
 @import 'new-card.css';
 @import 'people-card.css';
 @import 'card-room.css';
-@import 'people.css';
+@import 'columns.css';
+@import 'news-popup.css';
+@import 'hover-menu.css';
+@import 'myprof-active-popup.css';
+@import 'myprof-active.css';
+@import 'people-popup.css';
+@import 'emoji-popup.css';
+@import 'popup-add.css';

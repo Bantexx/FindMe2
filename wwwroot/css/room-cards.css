@@ -56,17 +56,17 @@
     color: var(--grey)
 }
 .room__icon {
-    content: url(/images/cards/star.svg);
+    width: 24px;
+    height: 24px;
+    background-image: var(--star);
     position: absolute;
     top: 5px;
     right: 0;
     cursor: pointer;
+    transition: all .3s linear;
 }
-.room__icon:hover{
-    content: url(/images/cards/star\ hover.svg);
-    transition: all .5s linear;
 
-}
+
 .room__description {
     margin-top: 15px;
 }

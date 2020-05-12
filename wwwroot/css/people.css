@@ -46,17 +46,19 @@
     color: var(--grey);
 }
 .people__icon {
-    content: url(/images/cards/star.svg);
+    width: 24px;
+    height: 24px;
+    background-image: var(--star);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
     position: absolute;
     right: 20px;
     top: 20px;
     cursor: pointer;
-}
-.people__icon:hover{
-    content: url(/images/cards/star\ hover.svg);
     transition: all .3s linear;
-  
 }
+
 
 .people__figure {
     margin-bottom: 20px;

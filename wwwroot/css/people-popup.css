@@ -1,0 +1,137 @@
+.people-popup {
+    width: 160px;
+    height: 300px;
+    height: auto;
+    border: 1px solid var(--grey);
+    border-radius: 15px;
+    margin: 0 auto;
+    background: var(--white);
+    position: absolute;
+    top: 1%;
+    right: 20%;
+    display: block;
+    z-index:10;
+  
+}
+.people-popup__inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    position: relative;
+    
+     
+}
+.people-popup__header {
+    display: flex;
+    flex-direction: column;
+    
+    margin-bottom: 10px;
+ 
+}
+
+.people-popup__title {
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+
+    color: var(--indigo);
+}
+.people-popup__loco {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+
+    color: var(--grey);
+}
+.people-popup__icon {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background-image: var(--star);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.people-popup__figure {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+    
+    
+}
+.people-popup__image {
+    width: 131px;
+    height: 131px;
+    border-radius: 20px;
+
+}
+.people-popup__tags {
+    width: 100%;
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--indigo); 
+    margin-bottom: 15px;
+    
+}
+.people-popup__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 5px;
+
+    
+}
+.people-popup__item {
+    padding-right: 10px;
+}
+.people-popup__link-tag {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    transition: all 0.3s linear;
+    color: var(--grey);
+}
+.people-popup__link-tag:hover {
+    color: var(--indigo);
+    transition: all 0.3s linear;
+}
+.people-popup__footer {
+    text-align: center;
+    
+}
+.people-popup__button {
+    border: 0;
+    outline: none;
+    background: transparent;
+    border: 2px solid var(--greenyellow);
+    border-radius: 15px;
+    background-color: var(--greenyellow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.people-popup__text {
+    padding: 30px 20px;
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+
+    color: var(--indigo);
+}
+
+.people-popup__button:hover{
+    background-color: var(--lime);
+    transition: all 0.3s ease;
+}

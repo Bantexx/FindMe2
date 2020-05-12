@@ -3,37 +3,41 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
     <link rel="stylesheet" href="~/css/MainStyle.css" />
     <title>FindMe</title>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
 </head>
 
 <body>
     <main class="site">
         <header class="header">
-            <div class="header__inner-left">
-                <div class="header__logo">
-                    <a href="/Home/Main">
-                        <img src="~/img/лого.svg" alt="logo">
-                    </a>
+            <div class="header__inner">
+                <div class="header__inner-left">
+                    <div class="header__logo">
+                        <a href="/Home/Main">
+                            <img src="~/img/лого.svg" alt="logo">
+                        </a>
+                    </div>
+                    <div class="search header__search">
+                        <form action="/Home/Search" method="Post" id="search_form">
+                            <input type="text" name="str" class="input input__search" id="headerSearch" placeholder="Поиск в FindMe" />
+                            <button type="submit" class="btn btn__search" id="btn_search"></button>
+                        </form>
+                    </div>
                 </div>
-                <div class="search header__search">
-                    <form action="/Home/Search" method="Post" id="search_form">
-                        <input type="text" name="str" class="input input__search" id="headerSearch" placeholder="Поиск в FindMe" />
-                        <button type="submit" class="btn btn__search" id="btn_search"></button>
-                    </form>
-                </div>
-            </div>
-            <div class="header__inner-right">
-                <div class="header__location">
-                    <a class="location__link" href="#"><span></span></a>
-                </div>
-                <div class="header__notification">
-                    <a class="notification__link" href="#"><span>Новость</span></a>
+                <div class="header__inner-right">
+                    <div class="header__location">
+                        <a class="location__link" href="#"><span></span></a>
+                    </div>
+                    <div class="header__notification">
+                        <a class="notification__link" href="#"><span>Новость</span></a>
+                    </div>
                 </div>
             </div>
         </header>
+
         <section class="general">
-            <div class="general__inner">
                 <aside class="aside__left">
                     <ul class="user__block">
                         <li><a class="block__link" href="/Home/Profile">Профиль</a></li>
@@ -44,7 +48,6 @@
                     </ul>
                 </aside>
                 @RenderBody()
-            </div>
         </section>
     </main>
     @await Html.PartialAsync("~/_ScriptsPartial.cshtml")

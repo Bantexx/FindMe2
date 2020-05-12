@@ -24,12 +24,14 @@ namespace FindMe2.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        IHubContext<ChatHub> _hubContext;
         IUserRepository repo;
         User current_user;
         IWebHostEnvironment _appEnvironment;
         private int Current_idUser;
-        public HomeController(IUserRepository rep, IWebHostEnvironment appEnvironment, IHttpContextAccessor contextAccessor)
+        public HomeController(IUserRepository rep, IWebHostEnvironment appEnvironment, IHttpContextAccessor contextAccessor, IHubContext<ChatHub> hubContext)
         {
+            _hubContext = hubContext;
             _appEnvironment = appEnvironment;
             repo = rep;
             Current_idUser = Convert.ToInt32(contextAccessor.HttpContext.User.Identity.Name);
@@ -38,28 +40,25 @@ namespace FindMe2.Controllers
         public IActionResult Main(string content = null)
         {
             MainNewsVM main_news = new MainNewsVM();
+            main_news.user_tags = repo.GetUserTags(Current_idUser).Select(x => x.Title).ToList();
+            main_news.popular_tags = repo.GetPopularTags(7).Select(x => x.Title).ToList();
+            main_news.content = content;
+            main_news.current_user = repo.GetUserById(User.Identity.Name);
+            main_news.fav_news = repo.GetFavNews(Current_idUser);
+            main_news.All_tags = repo.GetAllTags();
             if (content == "popular")
             {
-                List<Tag> pop_tags = repo.GetPopularTags(5);
-
-                main_news.user_tags = repo.GetUserTags(Current_idUser).Select(x => x.Title).ToList();
-                main_news.popular_tags = pop_tags.Select(x => x.Title).ToList();
-                main_news.author_news = repo.GetPopularNews(4);
-                main_news.content = content;
-
-                return View(main_news);
+                main_news.News = repo.GetPopularNews(7);
+            }
+            else if(content == "usertags")
+            {               
+                main_news.News = repo.GetNewsByUserTags(Current_idUser);
             }
             else
-            {               
-                List<Tag> user_tags = repo.GetUserTags(Current_idUser);
-
-                main_news.user_tags = user_tags.Select(x => x.Title).ToList();
-                main_news.popular_tags = repo.GetPopularTags(5).Select(x => x.Title).ToList();
-                main_news.author_news = repo.GetNewsByUserTags(Current_idUser);
-                main_news.content = content;
-
-                return View(main_news);
+            {
+                main_news.News = repo.GetAllNews();
             }
+            return View(main_news);
         }
         public IActionResult Profile()
         {
@@ -112,19 +111,21 @@ namespace FindMe2.Controllers
         {
             if (uploadedFile != null)
             {
-                string path = "/img/" + User.Identity.Name + uploadedFile.FileName;
-
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                string path =  "/Users/" + User.Identity.Name ;
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path + "/" + uploadedFile.FileName, FileMode.OpenOrCreate))
                 {
                     await uploadedFile.CopyToAsync(fileStream);
                 }
-                repo.UpdateAvatar(path, User.Identity.Name);
+                repo.UpdateAvatar(path + "/" + uploadedFile.FileName, Current_idUser);
             }
-
             return RedirectToAction("Profile");
         }
         [HttpGet]
-        public IActionResult Message(string su = null,string idchat = null)
+        public IActionResult Message(string su = null,string idchat = null,string srch_mess = null)
         {
             ChatsVM mainchats = new ChatsVM();
             if(su != null)
@@ -139,12 +140,21 @@ namespace FindMe2.Controllers
             {
                 MessageVM mvm = new MessageVM();
                 mvm.myprofile = repo.GetUserById(User.Identity.Name);
-                mvm.messages = repo.GetChatMessages(Convert.ToInt32(idchat));
+                if(srch_mess != null)
+                {
+                    mvm.messages = repo.GetChatMessages(Convert.ToInt32(idchat)).Where(x=>x.Text!=null && x.Text.IndexOf(srch_mess)!=-1).ToList();
+                    mainchats.search_str = srch_mess;
+                }
+                else
+                {
+                    mvm.messages = repo.GetChatMessages(Convert.ToInt32(idchat));
+                }
                 mvm.chat_attachments = repo.GetChatAttach(Convert.ToInt32(idchat));
+                mvm.FavMessages = repo.GetMessFavo(Convert.ToInt32(idchat),Current_idUser).Select(x=>x.Id_Mess).ToList();
                 mainchats.idChat = idchat;
                 mainchats.currentChat = mainchats.chats.Where(x => x.ChatId == idchat).FirstOrDefault();
                 mainchats.messageVm = mvm;
-            }         
+            }
             return View(mainchats);
         }
         public string GetLocation(string ip)
@@ -161,19 +171,62 @@ namespace FindMe2.Controllers
             }
             return "Default";
         }
-        public IActionResult SendMessageByUser(string mess,DateTime date, string idsender = null)
+        public async Task<IActionResult> SendMessageByUser(string idc,string idr,string mess, List<IFormFile> files)
         {
-            ViewBag.Text = mess;
-            ViewBag.Time = date;
-            if(idsender != null)
-            {
-                current_user = repo.GetUserById(idsender);
+
+            try
+            {            
+                int id_chat = Convert.ToInt32(idc);
+                int id_receiver = Convert.ToInt32(idr);
+                int check_chat = repo.GetChat(id_receiver,Current_idUser);
+                if (id_chat == check_chat)
+                {
+                    repo.AddMessage(Current_idUser, mess, DateTime.Now, id_chat);
+                    Message current_mess = repo.GetLastMessage(id_chat);
+                    if (files.Count > 0)
+                    {
+                        string path = "/Users/" + User.Identity.Name + "/chats/" + idc;
+                        if (!Directory.Exists(_appEnvironment.WebRootPath + path))
+                        {
+                            Directory.CreateDirectory(_appEnvironment.WebRootPath + path);
+                        }
+                        foreach (var file in files)
+                        {
+                            string ext = file.ContentType.Split('/')[1];
+                            string file_name = Path.GetRandomFileName() + "." + ext;
+                            using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path + "/" + file_name, FileMode.OpenOrCreate))
+                            {
+                                await file.CopyToAsync(fileStream);
+                            }
+                            await repo.AddAttachToMess(current_mess.Id_chat, current_mess.Id_mess, path + "/" + file_name);                                                        
+                        }
+                        
+                    }
+                    await _hubContext.Clients.User(idr).SendAsync("showMess", idc);
+                }                            
             }
-            else
+            catch (FormatException)
             {
-                current_user = repo.GetUserById(User.Identity.Name);
-            }          
-            return View(current_user);
+                return new NoContentResult();
+            }                
+            return Redirect("/Home/Message?idchat="+ idc);
+        }
+        public IActionResult ShowMessage(string idc)
+        {
+            MessageVM mvm = new MessageVM();
+            try
+            {
+                int id_chat = Convert.ToInt32(idc);
+                Message mess = repo.GetLastMessage(id_chat);
+                mvm.messages = new List<Message>(){ mess};
+                mvm.chat_attachments = repo.GetMessAttach(id_chat,mess.Id_mess);
+                mvm.myprofile = repo.GetUserById(mess.Id_sender.ToString());
+            }
+            catch(FormatException)
+            {
+                return new NoContentResult();
+            }
+            return View("SendMessageByUser",mvm);
         }
         public IActionResult Search(string str,string option = "All")
         {
@@ -217,6 +270,127 @@ namespace FindMe2.Controllers
             {
                 repo.AddTagToUser(Current_idUser, Convert.ToInt32(id_tag));
             }        
+        }
+        [HttpGet]
+        public IActionResult AddDialog(string idu)
+        {
+            User check_user = repo.GetUserById(idu);
+            if(check_user != null)
+            {
+                repo.CreateChat(Current_idUser, check_user.Id);
+                return RedirectToAction("Message");
+            }
+            return new NoContentResult();
+        }
+        public bool AddToFavoriteNews(string idn)
+        {
+            try
+            {
+                int id_news = Convert.ToInt32(idn);
+                repo.AddToFavoNews(id_news,Current_idUser);
+                return true;
+            }
+            catch(FormatException)
+            {
+                return false;
+            }
+            
+        }
+        public bool DeleteFromFavoritesNews(string idn)
+        {
+            try
+            {
+                int id_news = Convert.ToInt32(idn);
+                repo.RemoveFromFavoNews(id_news, Current_idUser);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+
+        }
+        [HttpPost]
+        public IActionResult AddNews(string Title,string Text)
+        {
+            repo.AddNews(Title,Text,Current_idUser,DateTime.Now);
+            return RedirectToAction("Main");          
+        }
+        public IActionResult ShowProfilePopup(string id_user)
+        {
+            ProfileModel pm = new ProfileModel(repo.GetUserById(id_user),repo.GetUserTags(Convert.ToInt32(id_user)));
+            return View("Profile_PopUp", pm);
+        }
+        public int GetInterestedNews(string id_news)
+        {
+            try
+            {
+                return repo.GetInterestedNews(Convert.ToInt32(id_news)); 
+            }
+            catch(FormatException)
+            {
+                return 0;
+            }
+        }
+        public bool DeleteCurrentChat(string id_c)
+        {
+            try
+            {
+                repo.DeleteChat(Convert.ToInt32(id_c),Current_idUser);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+        public bool AddToFavMess(string id_c,string id_m)
+        {
+            try
+            {
+                repo.AddToFavMess(Convert.ToInt32(id_c), Convert.ToInt32(id_m),Current_idUser);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+        public int[] GetFavoMess(string id_c)
+        {
+            try
+            {
+                var fav_messages = repo.GetMessFavo(Convert.ToInt32(id_c), Current_idUser);
+                return fav_messages.Select(x => x.Id_Mess).ToArray();
+            }
+            catch (FormatException)
+            {
+                return null;
+            }
+        }
+        public bool DelFromFavMess(string id_c,string id_m)
+        {
+            try
+            {
+                repo.DelFromFavMess(Convert.ToInt32(id_c), Convert.ToInt32(id_m), Current_idUser);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+        public bool DelMessFromChat(string id_c,string id_m)
+        {
+            try
+            {
+                repo.DelMessFromChat(Convert.ToInt32(id_c), Convert.ToInt32(id_m), Current_idUser);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
     }
 }

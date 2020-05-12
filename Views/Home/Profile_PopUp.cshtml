@@ -1,0 +1,33 @@
+﻿@model FindMe2.ViewModels.ProfileModel
+<div class="people-popup">
+
+    <div class="people-popup__inner">
+
+        <div class="people-popup__header">
+            <span class="people-popup__title">@Model.current_user.Login</span>
+            <span class="people-popup__loco">@Model.current_user.GeoLocation</span>
+            <span class="people-popup__icon active"></span>
+        </div>
+
+        <figure class="people-popup__figure">
+            <img src="@Model.current_user.Picture" alt="" class="people-popup__image">
+        </figure>
+
+        <div class="people-popup__tags">
+            <span>Топ теги:</span>
+            <ul class="people-popup__list">
+                @for(int i=0;i<Model.tags.Count && i<5;i++)
+                {
+                    <li class="people-popup__item"><a href="#" class="people-popup__link-tag">#@Model.tags[i].Title</a></li>
+                }
+            </ul>
+        </div>
+        <div class="people-popup__footer">
+            <button class="people-popup__button">
+                <a href="/Home/AddDialog?idu=@Model.current_user.Id">
+                    <span class="people-popup__text">Написать</span>
+                </a>
+            </button>
+        </div>
+    </div>
+</div>

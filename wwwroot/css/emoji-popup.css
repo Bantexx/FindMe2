@@ -1,0 +1,77 @@
+.emoji-popup {
+    width: 300px;
+    margin: 20px;
+    display: none;
+    position: absolute;
+    
+    bottom: 5%;
+    right: 6.5%;
+    z-index: 100;
+    background: var(--white);
+    border: 1px solid var(--grey);
+    border-radius: 10px;
+    padding-bottom: 15px;
+    line-height: initial;
+
+}
+.emoji-popup:after, .emoji-popup::before{
+    top: 100%;
+	left: 87%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+
+}
+.emoji-popup:after{
+    border-color: rgba(255, 255, 255, 0);
+	border-top-color: var(--white);
+	border-width: 7px;
+	margin-left: -7px;
+}
+.emoji-popup::before{
+    border-color: rgba(71, 245, 193, 0);
+	border-top-color: var(--grey);
+	border-width: 8px;
+	margin-left: -8px;
+}
+.emoji-popup__blocks {
+    padding: 10px;
+}
+
+.emoji-popup__title {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 10px;
+   
+}
+
+.emoji-popup__inner {
+    width: 100%;
+    height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 10px;
+}
+.emoji-popup__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.emoji-popup__item {
+  margin: 3px;
+    
+}
+
+.emoji-popup__link {
+
+}
+
+
+.emoji-popup__img {
+
+}

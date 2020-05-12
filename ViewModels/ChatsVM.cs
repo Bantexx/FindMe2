@@ -12,5 +12,6 @@ namespace FindMe2.ViewModels
         public MessageVM messageVm { get; set; }
         public string idChat { get; set; }
         public ChatUserProfile currentChat { get; set; }
+        public string search_str { get; set; }
     }
 }
