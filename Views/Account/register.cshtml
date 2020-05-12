@@ -1,0 +1,37 @@
+﻿@model FindMe2.ViewModels.RegisterModel
+@{
+    Layout = "_MasterAuth";
+}
+<div class="registration">
+    <div class="registration__inner">
+        <h1 class="registration__title">Регистрация</h1>
+        <div class="registration__form">
+            <form asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
+                @Html.ValidationSummary(false)
+                <label class="subtitle__login-registr" asp-for="Login">
+                    Логин
+                </label>
+                <input asp-for="Login" type="text" class="login__input-registr" id="login" name="Login" />
+
+                <label class="subtitle__email-registr" asp-for="Email">
+                    Email
+                </label>
+                <input asp-for="Email" type="text" class="email__input-registr" id="email" name="Email" />
+
+                <label class="subtitle__password-registr" asp-for="Password">
+                    Пароль
+                </label>
+                <input asp-for="Password" type="password" class="password__input-registr" id="password" name="Password">
+
+                <!--<input type="checkbox" id="checkbox" name="IsChecked">
+                    <label for="checkbox" class="checkbox__label" id="label">
+                    </label>
+                    <label class="text__checkbox">
+                        Нажимаете на кнопку “регистрация” означает согласие с настоящей Политикой конфидициальности.
+                    </label>
+                -->
+                <button class="button__registr" type="submit">Регистрация</button>
+            </form>
+        </div>
+    </div>
+</div>

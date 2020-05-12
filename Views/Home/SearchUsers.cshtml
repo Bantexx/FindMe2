@@ -1,0 +1,79 @@
+﻿@model List<UserTagsVM>
+@{
+    Layout = "_MasterMain";
+}
+<article class="content">
+    <div class="content__inner">
+        <div class="tags">
+            <ul class="tags__list">
+                <li>
+                    <a class="users__link" href="#"><span data-content="Мои теги">Мои теги</span></a>
+                    <ul class="user__tags">
+                        <li><a class="user__link user__link-sub" href="#">#люди</a></li>
+                        <li><a class="user__link user__link-sub" href="#">#мир</a></li>
+                        <li><a class="user__link user__link-sub" href="#">#техника</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="users__link" href="#"><span data-content="Популярные теги">Популярные теги</span></a>
+                    <!-- <ul class="popular__tags">
+                  <li><a class="user__link pop__link-sub"  href="#">#люди</a></li>
+                  <li><a class="user__link pop__link-sub"
+                   href="#">#страны</a></li>
+                  <li><a class="user__link pop__link-sub" href="#">#программирование</a></li>
+                  <li><a class="user__link pop__link-sub" href="#">#мир</a></li>
+                  <li><a class="user__link pop__link-sub" href="#">#спорт</a></li>
+                  <li><a class="user__link pop__link-sub" href="#">#природа</a></li>
+                  <li><a class="user__link pop__link-sub" href="#">#техника</a></li>
+                </ul> -->
+                </li>
+                <li>
+                    <a class="users__link" href="#"><span data-content="По локации">По локации</span></a>
+                </li>
+            </ul>
+        </div>
+        <section class="people">
+            <div class="people__cards">
+                @foreach (var item in Model)
+                {
+                    <div class="people__card">
+                        <div class="people__header">
+                            <span class="people__title">@item.user.Login</span>
+                            <span class="people__loco">Берлин</span>
+                            <span class="people__icon"></span>
+                        </div>
+
+                        <figure class="people__figure">
+                            <img src="@item.user.Picture" alt="" class="people__image">
+                        </figure>
+
+                        <div class="people__tags">
+                            <span>Топ теги:</span>
+                            <ul class="people__list">
+                                @foreach (var tag in item.tags)
+                                {
+                                    <li class="people__item"><a href="#" class="people__link-tag">#@tag.Title</a></li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="people__footer">
+                            <a href="/Home/AddDialog?idu=@item.user.Id">
+                                <button class="people__button">
+                                    <span class="people__text">Написать</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+</article>
+<aside class="aside__right">
+    <ul class="people__block">
+        <li><a class="people__link" style="text-decoration:underline" href="/Home/Search?str=@ViewBag.stringsrch">Все</a></li>
+        <li><a class="people__link" href="/Home/Search?str=@ViewBag.stringsrch&option=News">Новости</a></li>
+        <li><a class="people__link" href="/Home/Search?str=@ViewBag.stringsrch&option=Users">Люди</a></li>
+        <li><a class="people__link" href="/Home/Search?str=@ViewBag.stringsrch&option=Rooms">Комнаты</a></li>
+    </ul>
+</aside>

@@ -1,0 +1,133 @@
+.room {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 80px;
+     
+}
+.room__cards {
+    max-width: 1080px;
+    margin: 10px;  
+}
+.room__card {
+    width: 520px;
+    height: 250px;
+    border-radius: 15px;
+    background-color: var(--white);
+    padding: 15px 20px;
+    
+}
+.room__header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.room__figure {
+    margin-right: 20px;
+    
+}
+.room__image {
+    width: 125px;
+    height: 125px;
+}
+.room__content {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   position: relative;
+}
+.room__title {
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+  
+    color: var(--indigo);
+}
+.room__time {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+   
+    color: var(--grey)
+}
+.room__icon {
+    width: 24px;
+    height: 24px;
+    background-image: var(--star);
+    position: absolute;
+    top: 5px;
+    right: 0;
+    cursor: pointer;
+    transition: all .3s linear;
+}
+
+
+.room__description {
+    margin-top: 15px;
+}
+.room__title-subtitle {  
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+
+    color: var(--indigo);
+}
+.room__text {
+    margin-top: 10px;
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+
+    color: var(--indigo);
+}
+.room__card-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+
+}
+.room__card-icon{
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+
+    color: var(--grey);
+}
+.room__button {   
+    display: inline-block;
+    border: none;
+    border: 2px solid var(--greenyellow);
+    border-radius: 15px;  
+    cursor: pointer;
+    background: var(--greenyellow);
+
+
+}
+.button__text {
+    padding: 0 18px;
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 2;
+
+    color: var(--indigo);
+}
+
+.room__button:hover{
+    background-color: var(--lime);
+    transition: all 0.3s ease;
+    
+}

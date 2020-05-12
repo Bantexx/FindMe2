@@ -1,0 +1,211 @@
+﻿@model FindMe2.ViewModels.ChatsVM
+@{
+    Layout = "_MasterMain";
+    if (Model.search_str != null) {
+        ViewBag.loop_btn = "display:none";
+        ViewBag.mess_Srch = "display:block";
+        ViewBag.messpopUp = "right:485px";
+    }
+    else
+    {
+        ViewBag.mess_Srch = "display:none";
+        ViewBag.loop_btn = "display:inline-block";
+        ViewBag.messpopUp = "";
+    }
+
+}
+<div class="users">
+    <div class="search users__search">
+        <form id="usersSearch" action="/Home/Message" method="GET">
+            <input type="text" id="SearchUserChat" class="input users__input" name="su" placeholder="Поиск в сообщениях">
+            <button type="submit" class="btn btn__users"></button>
+        </form>
+    </div>
+    <div class="users__group area">
+        <ul class="users__list">
+            @foreach (var item in Model.chats)
+            {
+            <li class="users__name" data_id="@item.ChatId">
+                <img class="users__img" src="@item.Avatar" alt="">
+                <a href="/Home/Message?idchat=@item.ChatId" class="link">@item.Login</a>
+                <span class="users__name-close"></span>
+                <span class="users__loco">@item.GeoLocation</span>
+            </li>
+            }
+        </ul>
+    </div>
+
+</div>
+<div class="messenger">
+    @if (Model.idChat == null)
+    {
+        <p>выбери диалог или создайте новый</p>
+    }
+    else
+    {
+        <div class="messenger__header" id="@Model.currentChat.ChatId">
+            <div class="messenger__avatar">
+                <img class="messenger__link" src="@Model.currentChat.Avatar" alt="">
+                <span class="messenger__name" id="@Model.currentChat.IdUser">@Model.currentChat.Login</span>
+            </div>
+            <div class="messenger__item">
+                <div class="messenger__inner">
+                    <span class="messenger__hookup"></span>
+                    <span class="btn__messenger" style="@ViewBag.loop_btn"></span>
+                </div>
+                <div class="messenger__search" style="@ViewBag.mess_Srch">
+                    <form asp-controller="Home" asp-action="Message" method="GET">
+                        <input type="hidden" name="idchat" value="@Model.currentChat.ChatId" />
+                        <input type="text" name="srch_mess" class="input messenger__input" id="messengerSearch" placeholder="Поиск" />
+                        <button type="submit" class="messenger__submit" id="inputBtn">Поиск</button>
+                        <a href="/Home/Message?idchat=@Model.currentChat.ChatId" class="messenger__close" id="inputClose">Отмена</a>
+                    </form>
+                </div>
+                <div id="messPopup" class="messenger-popup" style="@ViewBag.messpopUp">
+                    <h3 class="messenger-popup__title">Закрепленные сообщения</h3>
+                    <div class="messenger-popup__block">
+                        @foreach (var fav in Model.messageVm.messages.Where(x => Model.messageVm.FavMessages.Contains(x.Id_mess)))
+                        {   <div class="messenger-popup__inner">
+                                @if (fav.Id_sender == Model.messageVm.myprofile.Id)
+                                {
+                                    <div class="messenger-popup__header">
+                                        <figure class="messenger-popup__avatar">
+                                            <img class="messenger-popup__img" src="@Model.messageVm.myprofile.Picture" alt="Ava">
+                                        </figure>
+                                        <div class="messenger-popup__data">
+                                            <span class="messenger-popup__name">@Model.messageVm.myprofile.Login</span>
+                                            <span class="messenger-popup__time">@fav.date_create</span>
+                                        </div>
+                                        <div class="messenger-popup__close"></div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="messenger-popup__header">
+                                        <figure class="messenger-popup__avatar">
+                                            <img class="messenger-popup__img" src="@Model.currentChat.Avatar" alt="Ava">
+                                        </figure>
+                                        <div class="messenger-popup__data">
+                                            <span class="messenger-popup__name">@Model.currentChat.Login</span>
+                                            <span class="messenger-popup__time">@fav.date_create</span>
+                                        </div>
+                                        <div class="messenger-popup__close"></div>
+                                    </div>
+                                }
+                                <div class="messenger-popup__content">
+                                    <p class="messenger-popup__text">
+                                        @fav.Text
+                                    </p>
+                                    <figure class="messenger-popup__images">
+                                        @foreach (var atach in Model.messageVm.chat_attachments.Where(x => x.Id_Chat == fav.Id_chat && x.Id_Mess == fav.Id_mess))
+                                        {
+                                            <img class="messenger-popup__picture" src="@atach.Attach" />
+                                        }
+                                    </figure>
+                                </div>
+                            </div>
+                         }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="messenger__chat">
+            @foreach (var item in Model.messageVm.messages.Select(x => x).OrderBy(x => x.date_create))
+            {
+                <!--<div class="chat__data">@item.date_create</div>-->
+                @if (item.Id_sender == Model.messageVm.myprofile.Id)
+                {
+                    <div class="chat__user" data_id="@item.Id_chat">
+                        <div class="chat__avatar">
+                            <img class="chat__img" src="@Model.messageVm.myprofile.Picture" alt="">
+                            <a class="chat__link" href="#">
+                                <span class="chat__time">@item.date_create</span>
+                                <span class="chat__name">@Model.messageVm.myprofile.Login</span>
+                                <span class="chat__loco">Париж</span>
+                            </a>
+                        </div>
+                        <div class="chat__messenger" data_id="@item.Id_mess">
+                            <span class="chat__icon"></span>
+                            <div class="chat__content">
+                                <p class="chat__text">
+                                    @item.Text
+                                </p>
+                                <picture class="chat__images">
+                                    @foreach (var atach in Model.messageVm.chat_attachments.Where(x => x.Id_Chat == item.Id_chat && x.Id_Mess == item.Id_mess).ToList())
+                                    {
+                                        <img src="@atach.Attach" alt="" />
+                                    }
+                                </picture>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="chat__user" data_id="@item.Id_chat">
+                        <div class="chat__avatar">
+                            <img class="chat__img" src="@Model.currentChat.Avatar" alt="">
+                            <a class="chat__link" href="#">
+                                <span class="chat__time">@item.date_create</span>
+                                <span class="chat__name">@Model.currentChat.Login</span>
+                                <span class="chat__loco">Берлин</span>
+                            </a>
+                        </div>
+                        <div class="chat__messenger" data_id="@item.Id_mess">
+                            <div class="chat__content">
+                                <span class="chat__icon"></span>
+                                <p class="chat__text">
+                                    @item.Text
+                                </p>
+                                <picture class="chat__images">
+                                    @foreach (var atach in Model.messageVm.chat_attachments.Where(x => x.Id_Chat == item.Id_chat && x.Id_Mess == item.Id_mess).ToList())
+                                    {
+                                        <img src="@atach.Attach" alt="" />
+                                    }
+                                </picture>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
+        </div>
+        @if (Model.search_str == null)
+        {
+            <div class="messenger__footer">
+                <div class="footer__chatline">
+                    <form asp-action="SendMessageByUser" asp-controller="Home" class="footer__form" id="send_mess" enctype="multipart/form-data">
+                        <label class="icon__fadd" id="forAttachFiles" for="attachFiles"></label>
+                        <input type="hidden" name="idc" value="@Model.currentChat.ChatId" />
+                        <input type="hidden" name="idr" value="@Model.currentChat.IdUser" />
+                        <input type="text" name="mess" class="footer__chat" id="messengerChat" placeholder="Написать сообщение">
+                        <input type="file" name="files" class="hide_input_type" id="attachFiles" accept=".jpg, .jpeg, .png" multiple />
+                        <button type="button" class="btn__chat"></button>
+                    </form>
+                    <div class="messenger__footer-add">
+                        <picture class="messenger__footer-img">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+            <div id="emojiPopup" class="emoji-popup">
+
+                <div class="emoji-popup__blocks">
+
+                    <h4 class="emoji-popup__title">Эмоджи</h4>
+
+
+                    <div class="emoji-popup__inner">
+
+                        <ul class="emoji-popup__list">
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+    }
+</div>
+<script src="~/js/messenger.js"></script>
+

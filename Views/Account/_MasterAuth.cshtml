@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <title>FindMe</title>
+</head>
+<body>
+    <section class="site">
+        <div class="intro">
+            <header class="header">
+                <a href="/Account/Login">
+                    <div class="logo"></div>
+                </a>
+            </header>
+            @RenderBody()
+        </div>
+    </section>
+    @await Html.PartialAsync("~/_ScriptsPartial.cshtml")
+</body>
+</html>
+

@@ -1,0 +1,61 @@
+.card__people-blocks {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.card__people-block{
+    position: relative;
+    
+}
+.card__people-block img{ 
+    width: 130px;
+    height: 130px;
+    display: block;
+
+    border-radius: 15px;
+    
+}
+
+
+
+.card__people-block::after{
+    content: '';
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+    left: 0;
+    display: block;
+    position: absolute;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4), rgba(129, 43, 43, 0.02));
+
+    border-radius: 0 0 15px 15px;
+    
+    
+   
+}
+.card__people-description {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    
+    
+}
+.card__people-name,
+.card__people-subscribers {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400; 
+    font-size: 14px; 
+    padding: 6px;
+    color: var(--indigo);
+    z-index: 10;
+}

@@ -1,0 +1,67 @@
+﻿@model FindMe2.ViewModels.SearchAllVM
+@{
+    Layout = "_MasterMain";
+}
+    <article class="content">
+        <div class="content__inner">
+            <div class="tags">
+                <ul class="tags__list">
+                    <li>
+                        <a class="users__link" href="#"><span data-content="Мои теги">Мои теги</span></a>
+                         <ul class="user__tags">
+                            <li><a class="user__link user__link-sub" href="#">#люди</a></li>
+                            <li><a class="user__link user__link-sub" href="#">#мир</a></li>
+                            <li><a class="user__link user__link-sub" href="#">#техника</a></li>
+                         </ul> 
+                    </li>
+                    <li>
+                        <a class="users__link" href="#"><span data-content="Популярные теги">Популярные теги</span></a>
+                        <!-- <ul class="popular__tags">
+                  <li><a class="user__link pop__link-sub"  href="#">#люди</a></li>
+                  <li><a class="user__link pop__link-sub"
+                   href="#">#страны</a></li>
+                  <li><a class="user__link pop__link-sub" href="#">#программирование</a></li>
+                  <li><a class="user__link pop__link-sub" href="#">#мир</a></li>
+                  <li><a class="user__link pop__link-sub" href="#">#спорт</a></li>
+                  <li><a class="user__link pop__link-sub" href="#">#природа</a></li>
+                  <li><a class="user__link pop__link-sub" href="#">#техника</a></li>
+                </ul> -->
+                    </li>
+                    <li>
+                        <a class="users__link" href="#"><span data-content="По локации">По локации</span></a>
+                    </li>
+                </ul>
+            </div>
+            <section class="cards">
+                @foreach (var item in Model.news)
+                {
+                    <div class="card" id="@item.idNews">
+                        <div class="card__header">
+                            <img class="avatar__card" src="@item.Avatar">
+                            <div class="card__name">
+                                <span class="name">@item.LoginAuthor</span>
+                                <span class="data">@item.DateNews</span>
+                            </div>
+                        </div>
+                        <div class="card__content">
+                            <p>@item.Text</p>
+                            <img src="@item.Picture" alt="food">
+                        </div>
+                        <div class="card__footer">
+                            <div class="icon__favorites"></div>
+                            <div class="icon__message"></div>
+                            <span class="text__subscribers">@item.Interested</span>
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+    </article>
+<aside class="aside__right">
+    <ul class="people__block">
+        <li><a class="people__link" style="text-decoration:underline" href="/Home/Search?str=@ViewBag.stringsrch">Все</a></li>
+        <li><a class="people__link" href="/Home/Search?str=@ViewBag.stringsrch&option=News">Новости</a></li>
+        <li><a class="people__link" href="/Home/Search?str=@ViewBag.stringsrch&option=Users">Люди</a></li>
+        <li><a class="people__link" href="/Home/Search?str=@ViewBag.stringsrch&option=Rooms">Комнаты</a></li>
+    </ul>
+ </aside>

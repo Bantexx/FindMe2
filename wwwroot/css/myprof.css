@@ -1,0 +1,255 @@
+#chgAva {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.label_ava {
+    width: 180px;
+    height: 50px;
+    border-radius: 4px;
+    text-align: center;
+    margin: 25px;
+    cursor: pointer;
+    display: block;
+    font: 14px/50px Tahoma;
+    transition: all 0.18s ease-in-out;
+    border: 1px solid #4FD666;
+    background: linear-gradient(to top right, #3EC97A, #69EA49 20%, rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, 0)) top right/500% 500%;
+    color: #4FD666;
+}
+.label_ava:hover {
+    color: white;
+    background-position: bottom left;
+}
+.down_images{
+    width:200px;
+    height:200px;
+}
+.proff {
+    max-width: 1600px;
+    width: 100%;
+    height: 82vh;
+    background: var(--white);
+    border-radius: 15px;
+    padding: 50px;
+    margin-left: 20px;
+}
+.header__proff {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+
+.proff__title{
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+
+    color: var(--indigo);
+}
+
+.proff__link{
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    padding-right: 20px;
+   
+    color: var(--grey);
+
+}
+.proff__link:hover,
+.link__proff:hover{
+    color: var(--rebeccapurple);
+    transition: all 0.5s ease;
+}
+
+.info__proff {
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+
+}
+.avatar__proff {
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+.img__proff {
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+}
+.link__proff {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    padding-left: 40px;
+    padding-top: 10px;
+    color: var(--grey);
+
+}
+.tags__proff {
+    width: 50%;
+    margin-top: 40px;
+    
+    
+  
+  }
+  .tags__title{
+      margin-bottom: 15px;
+      z-index: 999999;
+  }
+  .tags__proff-link{
+      font-family: var(--sans);
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+       
+      color: var(--indigo);
+  }
+
+  .tags__proff-link::before{
+      content: '';
+      width: 28px;
+      height: 28px;
+      display: inline-block;
+      margin-right: 10px;
+      vertical-align: middle;
+      background-image: var(--plus-circle-indigo);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+
+  }
+  
+  .tag__link{
+      
+      font-family: var(--serif);
+      font-style: normal;
+      font-weight: 400;
+      font-size: var(--srf);
+      padding-right: 5px;
+      color: var(--grey);
+  }
+  .tag__link:hover{
+    color: var(--indigo);
+    transition: all 0.4s linear;
+  }
+.form__proff {
+    width: 20% ;
+}
+.group__form {
+    position: relative;
+    margin-bottom: 30px;
+    width: 100%;
+
+}
+.group__form label{
+
+    position: absolute;
+    top: 0;
+    left: 1px;
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    
+    color: var(--grey);
+}
+.group__form input{
+    display: block;
+    width: 100%;
+    
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--indigo);
+    background: none;
+    height: 50px;
+    border: none;
+    border-bottom: 1px solid var(--grey);
+}
+.group__form input:focus ~ label,
+.group__form input:valid ~ label{
+    top: -20px;
+    transition: all 0.3s ease;
+    font-weight: 400;
+    font-size: 18px;
+}
+.group__form:focus ~ .input__proff::before,
+.group__form:focus ~ .input__proff::after{
+    width: 50%;
+}
+.group__form input:focus{
+    outline: none;
+}
+.group__form  .input__proff {
+    position: relative;
+    display: block;
+    width: 800px;
+    max-width: 100%;
+   
+
+}
+.group__form ::before,
+.input__proff::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    background: #000;
+    height: 1px;
+    transition: all .2s ease-out;
+
+}
+.group__form,
+.input__proff::after {
+   width: 150%;
+ 
+}
+.group__form,
+.input__proff::before {
+   width: 150%;
+
+}
+
+.btn__prof {
+    background: var(--greenyellow);
+    border: none;
+    border: 2px solid var(--greenyellow);
+    border-radius: 20px;
+    margin-top: 50px;
+    padding: 18px 80px;
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--rebeccapurple);
+
+}
+
+.btn__prof:hover{
+    border: 2px solid var(--lime);
+    color: var(--indigo);
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+}

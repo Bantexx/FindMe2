@@ -1,0 +1,65 @@
+﻿@model FindMe2.ViewModels.ProfileModel
+@{
+    Layout = "_MasterMain";
+}
+<section class="proff">
+    <div class="header__proff">
+        <h2 class="proff__title">Мой профиль</h2>
+        <a class="proff__link" href="/Home/EditProfile">Редактировать</a>
+    </div>
+
+    <div class="info__proff">
+        <div class="avatar__proff">
+            <img class="img__proff" src="@Model.current_user.Picture" alt="avatar">
+            <a class="link__proff">Изменить аватар</a>
+
+            <div class="tags__proff">
+                <h4 class="tags__title">Мои теги:</h4>
+                <div class="container_tags">
+                    @foreach (var tag in Model.tags)
+                    {
+                        <a class="tag__link" href="#">#@tag.Title</a>
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="form__proff form__proff-active">
+
+            <div class="group__form active__form">
+                <span class="group__form-title">Логин:</span>
+                <p class="group__form-email">@Model.current_user.Login</p>
+            </div>
+
+            <div class="group__form active__form">
+                <span class="group__form-title">Email:</span>
+                <p class="group__form-email">@Model.current_user.Email</p>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="active-popup">
+    <div class="active-popup__inner">
+
+        <div class="active-popup__header">
+            <h4 class="active-popup__title">Загрузка новой фотографии</h4>
+            <span class="active-popup__close"></span>
+        </div>
+        <div class="showAva">
+            <img class="block_Avatar" src ="" alt="Avatar"/>
+        </div>
+        <div class="active-popup__content">
+            <p class="active-popup__description">Друзьям будет проще узнать Вас, если Вы загрузите свою настоящую фотографию. Вы можете загрузить изображение в формате JPG, GIF или PNG.</p>
+            <form asp-action="ChangeAva" asp-controller="Home" method="POST" enctype="multipart/form-data">
+                <input type="file" class="hide_input_type" id="file_input" accept=".jpg, .jpeg, .png" name="uploadedFile"/>
+                <label id="for_file_input" for="file_input" class="active-popup__btn">Выберите файл</label>
+                <button id="send_input" type="submit" class="active-popup__btn">Загрузить</button>
+            </form>
+        </div>
+
+        <div class="active-popup__footer">
+            <p>Если у Вас возникают проблемы с загрузкой, попробуйте выбрать фотографию меньшего размера.</p>
+        </div>
+    </div>
+</section>
