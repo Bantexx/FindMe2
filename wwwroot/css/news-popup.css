@@ -44,7 +44,7 @@
     border: none;
     outline: none;
     border-bottom: 1px solid var(--rebeccapurple);
-    color: (--light-grey);
+
     background-color: var(--light-grey);
    
 }

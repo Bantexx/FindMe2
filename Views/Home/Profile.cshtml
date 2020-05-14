@@ -14,7 +14,9 @@
             <a class="link__proff">Изменить аватар</a>
 
             <div class="tags__proff">
-                <h4 class="tags__title">Мои теги:</h4>
+                <h4 class="tags__title">
+                      <a data-id="popupProff" href="#" class="tags__proff-link">Мои теги:</a>
+                </h4>
                 <div class="container_tags">
                     @foreach (var tag in Model.tags)
                     {
