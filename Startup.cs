@@ -26,7 +26,7 @@ namespace FindMe2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionstring = "Data Source=.\\SQLEXPRESS01;Initial Catalog=MainDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionstring = "Data Source=.\\SQLEXPRESS;Initial Catalog=MainDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             services.AddTransient<IUserRepository, UserRepository>(provider => new UserRepository(connectionstring));
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
