@@ -2,10 +2,9 @@
     position: fixed;
     top: 10%;
     left: 40%;
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    
     width: 600px;
     height: 650px;
     margin: 0 auto;
@@ -14,40 +13,40 @@
     border: 2px solid var(--rebeccapurple);
     padding: 20px 30px;
     z-index: 10000;
-    
 }
+
 .input__popup {
     width: 370px;
     height: 40px;
     margin-bottom: 20px;
-   
 }
 
-.popup__tags{
-    flex: 1 0 auto; 
-    overflow-y: scroll;  
+.popup__tags {
+    flex: 1 0 auto;
+    overflow-y: scroll;
     overflow-x: hidden;
     margin-bottom: 15px;
 }
-.tags__list-popup{
-  width: 100%;
-   
-}
-.users__link{
-    font-size: 18px; 
 
+.tags__list-popup {
+    width: 100%;
 }
-span.users__popup{
+
+.users__link {
+    font-size: 18px;
+}
+
+span.users__popup {
     font-weight: 600;
     color: var(--rebeccapurple);
 }
-.popup{
+
+.popup {
     display: inline-block;
     font-family: var(--serif);
     font-style: normal;
     font-weight: 400;
     font-size: var(--srf);
-
     color: var(--grey);
     border: 1px solid var(--grey);
     border-radius: 15px;
@@ -57,7 +56,7 @@ span.users__popup{
     transition: all .5s ease;
 }
 
-.popup__icon{
+.popup__icon {
     content: "";
     width: 20px;
     height: 20px;
@@ -70,34 +69,14 @@ span.users__popup{
     vertical-align: middle;
     margin-left: 20px;
     transition: all .5s ease;
-    
-}
-/* .popup:hover > .popup__icon{
-    content: "";
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    background-image: var(--plus-circle-indigo);
-    transition: all .5s ease;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    vertical-align: middle;
-    margin-left: 20px;
 }
 
-.popup:hover{
-    border: 1px solid var(--indigo);
-    font-weight: 400;
-    color: var(--indigo);
-    transition: all .5s ease;
-} */
-.popup-active{
+.popup-active {
     color: var(--lime);
     border: 1px solid var(--lime);
-
 }
-.popup__icon-active{
+
+.popup__icon-active {
     content: "";
     width: 20px;
     height: 20px;
@@ -109,22 +88,19 @@ span.users__popup{
     background-position: center;
     vertical-align: middle;
     margin-left: 20px;
-
 }
 
 
 .popup__close {
     flex: 0 0 auto;
-    align-self: start;  
-      
+    align-self: start;
 }
+
 .close__link {
     font-family: var(--serif);
     font-weight: 500;
     font-size: 14px;
     line-height: 16px;
-    color: (--indigo);
-
-    
+    color: var(--indigo);
+    cursor: pointer;
 }
-

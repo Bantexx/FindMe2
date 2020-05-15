@@ -4,14 +4,13 @@
     margin-top: 60px;
     
 }
-.people__cards { 
+.people__cards {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    
-   
-    
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+ 
 }
 .people__card {
     width: 250px;

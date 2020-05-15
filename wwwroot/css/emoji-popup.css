@@ -3,16 +3,14 @@
     margin: 20px;
     display: none;
     position: absolute;
-    
-    bottom: 5%;
-    right: 6.5%;
+    bottom: 12.3%;
+    right: 4%;
     z-index: 100;
     background: var(--white);
     border: 1px solid var(--grey);
     border-radius: 10px;
     padding-bottom: 15px;
     line-height: initial;
-
 }
 .emoji-popup:after, .emoji-popup::before{
     top: 100%;
@@ -67,11 +65,4 @@
     
 }
 
-.emoji-popup__link {
 
-}
-
-
-.emoji-popup__img {
-
-}

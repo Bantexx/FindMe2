@@ -2,45 +2,49 @@
 @{
     Layout = "_MasterMain";
 }
-<section class="proff">
-    <div class="header__proff">
-        <h2 class="proff__title">Мой профиль</h2>
-        <a class="proff__link" href="/Home/EditProfile">Редактировать</a>
-    </div>
+    <div class="proff">
+        <div class="header__proff">
+            <h2 class="proff__title">Мой профиль</h2>
+            <a class="proff__link" href="/Home/EditProfile">редактировать</a>
+        </div>
 
-    <div class="info__proff">
-        <div class="avatar__proff">
-            <img class="img__proff" src="@Model.current_user.Picture" alt="avatar">
-            <a class="link__proff">Изменить аватар</a>
+        <div class="info__proff">
 
-            <div class="tags__proff">
-                <h4 class="tags__title">
-                      <a data-id="popupProff" href="#" class="tags__proff-link">Мои теги:</a>
-                </h4>
-                <div class="container_tags">
-                    @foreach (var tag in Model.tags)
-                    {
-                        <a class="tag__link" href="#">#@tag.Title</a>
-                    }
+            <div class="avatar__proff">
+                <img class="img__proff" src="@Model.current_user.Picture" alt="avatar">
+                <p class="link__proff">изменить аватар</p>
+
+                <div class="tags__proff">     
+                      <h4 class="tags__title">
+                        <a data-id="popupProff" href="#" class="tags__proff-link">Мои теги:</a>
+                      </h4>
+                    <div class="container_tags">
+                        @foreach (var tag in Model.tags)
+                        {
+                            <a class="tag__link" href="#">#@tag.Title</a>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form__proff">
+
+                <div class="group__form active__form">
+                    <span class="group__form-title">Логин:</span>
+                    <p class="group__form-email">@Model.current_user.Login</p>
+                </div>
+
+                <div class="group__form active__form">
+                    <span class="group__form-title">Email:</span>
+                    <p class="group__form-email">@Model.current_user.Email</p>
+
                 </div>
             </div>
-
         </div>
-        <div class="form__proff form__proff-active">
 
-            <div class="group__form active__form">
-                <span class="group__form-title">Логин:</span>
-                <p class="group__form-email">@Model.current_user.Login</p>
-            </div>
-
-            <div class="group__form active__form">
-                <span class="group__form-title">Email:</span>
-                <p class="group__form-email">@Model.current_user.Email</p>
-
-            </div>
-        </div>
     </div>
-</section>
+
 <section class="active-popup">
     <div class="active-popup__inner">
 

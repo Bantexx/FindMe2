@@ -2,12 +2,12 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    
+    flex-wrap: nowrap;
+   
 }
 .card__people-block{
     position: relative;
+    margin-right: 20px;
     
 }
 .card__people-block img{ 
@@ -18,8 +18,6 @@
     border-radius: 15px;
     
 }
-
-
 
 .card__people-block::after{
     content: '';

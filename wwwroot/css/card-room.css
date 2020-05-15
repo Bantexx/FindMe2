@@ -2,15 +2,15 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
+    flex-wrap: nowrap;
+    
 }
 .card__room-block {
     display: flex;
     flex-direction: row;
     width: 280px;
     height: 130px;
+    margin-right: 15px;
     border-radius: 15px;
     background: var(--greenyellow);
   

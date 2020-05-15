@@ -37,50 +37,48 @@
     padding: 50px;
     margin-left: 20px;
 }
+
 .header__proff {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-
 }
 
-.proff__title{
+.proff__title {
     font-family: var(--sans);
     font-style: normal;
     font-weight: 500;
     font-size: 48px;
-
     color: var(--indigo);
 }
 
-.proff__link{
+.proff__link {
     font-family: var(--sans);
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     padding-right: 20px;
-   
     color: var(--grey);
+    cursor: pointer;
+}
 
-}
-.proff__link:hover,
-.link__proff:hover{
-    color: var(--rebeccapurple);
-    transition: all 0.5s ease;
-}
+    .proff__link:hover,
+    .link__proff:hover {
+        color: var(--rebeccapurple);
+        transition: all 0.5s ease;
+    }
 
 .info__proff {
     display: flex;
     flex-direction: row;
     margin-top: 40px;
-
 }
+
 .avatar__proff {
+    width: 30%;
     display: flex;
     flex-direction: column;
-    
-    
 }
 
 .img__proff {
@@ -88,6 +86,7 @@
     height: 250px;
     border-radius: 20px;
 }
+
 .link__proff {
     font-family: var(--serif);
     font-style: normal;
@@ -96,18 +95,19 @@
     padding-left: 40px;
     padding-top: 10px;
     color: var(--grey);
-
+    cursor: pointer;
 }
-.tags__proff {
-    width: 50%;
-    margin-top: 40px;
-    
-  }
 
-.tags__title{
+.tags__proff {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.tags__title {
     margin-bottom: 15px;
     z-index: 999999;
 }
+
 .tags__proff-link {
     font-family: var(--sans);
     font-style: normal;
@@ -117,9 +117,9 @@
     color: var(--grey);
 }
 
-.tags__proff-link:hover {
-    color: var(--indigo);
-}
+    .tags__proff-link:hover {
+        color: var(--indigo);
+    }
 
     .tags__proff-link::before {
         content: '';
@@ -148,22 +148,21 @@
         background-repeat: no-repeat;
         background-position: center;
         cursor: pointer;
-        transition: all .4s linear;
     }
-  
-  .tag__link{  
-      font-family: var(--serif);
-      font-style: normal;
-      font-weight: 400;
-      font-size: var(--srf);
-      padding-right: 5px;
-      color: var(--grey);
-  }
 
-  .tag__link:hover{
-    color: var(--indigo);
-    transition: all 0.4s linear;
-  }
+.tag__link {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: var(--srf);
+    padding-right: 5px;
+    color: var(--grey);
+}
+
+    .tag__link:hover {
+        color: var(--indigo);
+        transition: all 0.4s linear;
+    }
 
 
 .form__proff {
@@ -174,56 +173,56 @@
 .group__form {
     display: flex;
     flex-direction: column;
-    margin-bottom: 5px;
+    margin-bottom: 50px;
 }
 
-.group__form label {
-    font-family: var(--serif);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 21px;
-    margin-bottom: 20px;
-    color: var(--grey);
- }
+    .group__form label {
+        font-family: var(--sans);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+
+        margin-bottom: 30px;
+        color: var(--grey);
+    }
 
 .group__form-input {
     border: none;
-    border-bottom: 1px solid var(--indigo);
+    border-bottom: 1px solid var(--grey);
     font-family: var(--sans);
+    font-size: 24px;
     font-style: normal;
     font-weight: 400;
-    line-height: 21px;
+  
     color: var(--indigo);
 }
 
+    .group__form-input:focus {
+        outline: none;
+    }
 
-.group__form-input:focus {
-    outline: none;
-}
 
 .btn__prof {
     background: var(--greenyellow);
     border: none;
     border: 2px solid var(--greenyellow);
     border-radius: 20px;
-    margin-top: 50px;
+    margin-top: 30px;
     padding: 18px 80px;
     font-family: var(--sans);
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
-    align-items: center;
+
     text-transform: uppercase;
     cursor: pointer;
     color: var(--rebeccapurple);
-
+    outline: none;
 }
 
-.btn__prof:hover{
-    border: 2px solid var(--lime);
-    color: var(--indigo);
-    font-weight: 500;
-    transition: all 0.3s ease;
-
-}
+    .btn__prof:hover {
+        border: 2px solid var(--lime);
+        color: var(--indigo);
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
