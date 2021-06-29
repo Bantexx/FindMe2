@@ -24,7 +24,7 @@ namespace FindMe2.MainClasses
             using (var client = new SmtpClient())
             {
                 await client.ConnectAsync("smtp.yandex.ru", 25, false);
-                await client.AuthenticateAsync("Calenven@yandex.ru", "62447899201");
+                await client.AuthenticateAsync("Calenven@yandex.ru", "");
                 await client.SendAsync(emailMessage);
 
                 await client.DisconnectAsync(true);
